@@ -31,6 +31,17 @@ const Form = () => {
     // TODO: call a function showData(formData) from context: step 4
   };
 
+  const getAge = (dateString) => {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  };
+
   return (
     <>
       <form>
@@ -65,14 +76,20 @@ const Form = () => {
               Birthdate
             </label>
             <div className="input-group has-validation">
-              <span className="input-group-text">You are XX years old</span>
               <input
                 type="date"
                 className="form-control"
                 id="birthdate"
                 placeholder="enter your birthdate"
+                min="1900-01-01"
+                max="2022-02-03"
                 onChange={handleChange}
               />
+              {formData.birthdate && (
+                <span className="input-group-text fw-bold">
+                  You are {getAge(formData.birthdate)} years old
+                </span>
+              )}
             </div>
           </div>
           <div className="col-sm-6">
@@ -169,6 +186,7 @@ const Form = () => {
             type="submit"
             className="btn m-2 btn-warning"
             onClick={handleSubmit}
+            disabled
           >
             ENTER
           </button>
