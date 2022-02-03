@@ -6,7 +6,7 @@ import "./Form.css";
 const Form = () => {
   // const { step, incrementStep, decrementStep, showData } = useContext(FormContext);
 
-  const initialFormData = Object.freeze({
+  const initialFormData = {
     name: "",
     lastName: "",
     birthdate: "",
@@ -14,9 +14,9 @@ const Form = () => {
     username: "",
     password: "",
     rememberPassword: "",
-  });
+  };
 
-  const [formData, updateFormData] = useState({});
+  const [formData, updateFormData] = useState(initialFormData);
 
   const handleChange = (event) => {
     updateFormData({
