@@ -1,3 +1,15 @@
 .input-group-text {
   background-color: #ffd900;
 }
+
+.btn-disabled {
+  pointer-events: none;
+  background-color: grey;
+  color: darkGray;
+  border-color: grey;
+  opacity: 0.7;
+}
+
+.input-group-text {
+  font-size: 0.9rem;
+}

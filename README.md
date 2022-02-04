@@ -5,3 +5,4 @@
 3. optional (Extract input elements as component?)
 4. add context / context provider
 5. add methods to handle data input (with useState hook)
+6. add conditional rendering
