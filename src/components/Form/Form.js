@@ -200,7 +200,9 @@ const Form = () => {
                   <Button
                     type="submit"
                     text="ENTER"
-                    className="btn m-2 btn-warning btn-lg"
+                    className={`btn m-2 btn-warning btn-lg${
+                      validated ? "" : " btn-disabled"
+                    }`}
                     actionOnClick={handleSubmit}
                   />
                 </div>
