@@ -19,7 +19,7 @@ const FormContextProvider = ({ children }) => {
   const decrementStep = () => setFormStep(formStep - 1);
 
   const testEmail = (emailAdress) => {
-    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     if (emailAdress.match(regexEmail)) {
       return true;
     } else {

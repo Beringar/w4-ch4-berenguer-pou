@@ -1,13 +1,8 @@
 import "./App.css";
-import Button from "./components/Button/Button";
+
 import Form from "./components/Form/Form";
-import FormContext from "./components/contexts/FormContext";
-import { useContext } from "react";
 
 function App() {
-  const { formStep, incrementStep, decrementStep, checkForm } =
-    useContext(FormContext);
-
   return (
     <>
       <div className="bg-light">
