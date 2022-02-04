@@ -12,6 +12,7 @@ const Form = () => {
     setFormData,
     checkForm,
     validated,
+    errorData,
   } = useContext(FormContext);
 
   const handleChange = (event) => {
@@ -42,10 +43,11 @@ const Form = () => {
     <>
       <div className="row g-3 mb-1 mt-2">
         <form>
+          <h1>React Form W4 CH4</h1>
           {formStep === 1 && (
             <>
               <div className="row g-4">
-                <h3>STEP 1</h3>
+                <h3>1. Personal data</h3>
                 <div className="col-sm-6">
                   <label htmlFor="name" className="form-label">
                     Name
@@ -110,7 +112,7 @@ const Form = () => {
           {formStep === 2 && (
             <>
               <div className="row g-4">
-                <h3>STEP 2</h3>
+                <h3>2. User data</h3>
                 <div className="col-md-4">
                   <label htmlFor="username" className="form-label">
                     Username
@@ -154,7 +156,7 @@ const Form = () => {
           {formStep === 3 && (
             <>
               <div className="row g-4">
-                <h3>STEP 3</h3>
+                <h3>3. Login</h3>
                 <div className="col-md-6">
                   <label htmlFor="usernameLogin" className="form-label">
                     Username
@@ -238,6 +240,11 @@ const Form = () => {
             text="Next Step"
           />
         </div>
+      )}
+      {Object.keys(errorData).length > 0 && (
+        <>
+          <h5>Missing data!</h5>
+        </>
       )}
     </>
   );
