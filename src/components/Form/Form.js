@@ -1,25 +1,14 @@
 import { useState } from "react";
 import "./Form.css";
-// import FormContext from "../contexts/FormContext";
-// import { useContext } from "react";
+import FormContext from "../contexts/FormContext";
+import { useContext } from "react";
+import Button from "../Button/Button";
 
 const Form = () => {
-  // const { step, incrementStep, decrementStep, showData } = useContext(FormContext);
-
-  const initialFormData = {
-    name: "",
-    lastName: "",
-    birthdate: "",
-    email: "",
-    username: "",
-    password: "",
-    rememberPassword: "",
-  };
-
-  const [formData, updateFormData] = useState(initialFormData);
+  const { formStep, formData, setFormData } = useContext(FormContext);
 
   const handleChange = (event) => {
-    updateFormData({
+    setFormData({
       ...formData,
       // Trimming any whitespace
       [event.target.id]: event.target.value.trim(),
@@ -182,14 +171,12 @@ const Form = () => {
           </div>
         </div>
         <div className="d-flex justify-content-center">
-          <button
+          <Button
             type="submit"
+            text="ENTER"
             className="btn m-2 btn-warning"
-            onClick={handleSubmit}
-            disabled
-          >
-            ENTER
-          </button>
+            actionOnClick={handleSubmit}
+          />
         </div>
       </form>
       <hr className="my-4" />

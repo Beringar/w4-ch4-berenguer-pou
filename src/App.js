@@ -1,7 +1,12 @@
 import "./App.css";
+import Button from "./components/Button/Button";
 import Form from "./components/Form/Form";
+import FormContext from "./components/contexts/FormContext";
+import { useContext } from "react";
 
 function App() {
+  const { incrementStep, decrementStep } = useContext(FormContext);
+
   return (
     <>
       <div className="bg-light">
@@ -10,9 +15,17 @@ function App() {
             <div className="row g-5">
               <div className="col">
                 <Form />
-                <div className="d-flex justify-content-center">
-                  <button className="btn m-2 btn-primary">Previous step</button>
-                  <button className="btn m-2 btn-primary">Next step</button>
+                <div className="d-flex justify-content-end">
+                  <Button
+                    className="btn m-2 btn-primary"
+                    actionOnClick={decrementStep}
+                    text="Previous Step"
+                  />
+                  <Button
+                    className="btn m-2 btn-primary"
+                    actionOnClick={incrementStep}
+                    text="Next Step"
+                  />
                 </div>
               </div>
             </div>
