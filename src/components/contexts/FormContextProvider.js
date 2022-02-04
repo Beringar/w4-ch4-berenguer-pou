@@ -14,9 +14,16 @@ const FormContextProvider = ({ children }) => {
   const [formStep, setFormStep] = useState(1);
   const [formData, setFormData] = useState(initialFormData);
   const [validated, setValidated] = useState(false);
+  const [errorData, setErrorData] = useState({});
 
-  const incrementStep = () => setFormStep(formStep + 1);
-  const decrementStep = () => setFormStep(formStep - 1);
+  const incrementStep = () => {
+    setFormStep(formStep + 1);
+    setErrorData([]);
+  };
+  const decrementStep = () => {
+    setFormStep(formStep - 1);
+    setErrorData([]);
+  };
 
   const testEmail = (emailAdress) => {
     let regexEmail = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
@@ -25,6 +32,10 @@ const FormContextProvider = ({ children }) => {
     } else {
       return false;
     }
+  };
+
+  const addError = (label, errorMsg) => {
+    setErrorData({ ...errorData, [label]: errorMsg });
   };
 
   const checkForm = (step) => {
@@ -44,14 +55,27 @@ const FormContextProvider = ({ children }) => {
         setValidated(
           name !== "" && lastName !== "" && birthdate !== "" && testEmail(email)
         );
+        if (!name) addError("Name", "empty!");
+        if (!lastName) addError("Last name", "empty!");
+        if (!birthdate) addError("Birthdate", "not selected!");
         break;
       case 2:
         setValidated(
           username && password && repeatPassword && password === repeatPassword
         );
+        if (!username) addError("Username", "empty!");
+        if (!password) addError("Password", "empty");
+        if (!testEmail) addError("Email", "Email is not valid!");
         break;
       case 3:
         setValidated(usernameLogin === username && passwordLogin === password);
+        if (usernameLogin !== username)
+          addError(
+            "Login username",
+            "Username does not match data entered in Step 2!"
+          );
+        if (passwordLogin !== password)
+          addError("Login Password", "does not match data entered in Step 2!");
         break;
       default:
         break;
@@ -69,6 +93,7 @@ const FormContextProvider = ({ children }) => {
         setFormData,
         checkForm,
         validated,
+        errorData,
       }}
     >
       {children}
